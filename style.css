@@ -1,4 +1,4 @@
-/* Reset some default browser styles */
+/* ===== RESET DEFAULTS ===== */
 * {
   margin: 0;
   padding: 0;
@@ -18,12 +18,14 @@ body {
 .navbar {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 20px;
   background: #0d1b2a;
   padding: 1rem;
   position: sticky;
   top: 0;
   z-index: 1000;
+  flex-wrap: wrap; /* handle overflow on narrow screens */
 }
 
 .navbar a {
@@ -39,7 +41,7 @@ body {
 
 /* ===== MAIN CONTENT ===== */
 .main-content {
-  max-width: 900px;
+  max-width: 800px; /* optimized for readability */
   margin: 2rem auto;
   padding: 1rem;
   text-align: center;
@@ -51,7 +53,7 @@ body {
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
   font-style: normal;
-  color: #0d1b2a;
+  color: #ffffff;
 }
 
 .main-content h1 {
@@ -62,18 +64,21 @@ body {
 .main-content h2 {
   font-size: 1.4rem;
   margin: 1.5rem 0 1rem;
-  color: #1b263b;
+  color: #ffffff;
 }
 
 .main-content h3 {
   font-size: 1.2rem;
   margin: 1rem 0;
-  color: #1b263b;
+  color: #ffffff;
 }
 
 .main-content p {
-  margin-bottom: 1rem;
-  color: #333;
+  background: #e6f0ff;
+  margin: 0.5rem 0;
+  padding: 0.8rem;
+  border-radius: 8px;
+  text-align: left;
 }
 
 .main-content ul {
@@ -96,11 +101,14 @@ body {
   text-align: center;
   padding: 1rem;
   margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* improved link spacing */
+  flex-wrap: wrap;
 }
 
 .footer a {
   color: #4da3ff;
-  margin-left: 10px;
   text-decoration: none;
 }
 
@@ -112,7 +120,6 @@ body {
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
-    align-items: center;
     gap: 10px;
   }
 
@@ -126,6 +133,7 @@ body {
 
   .main-content {
     padding: 1rem;
+    text-align: center;
   }
 
   /* make table scrollable on mobile */
@@ -145,6 +153,11 @@ body {
 }
 
 /* ===== EXHIBITION HUB TABLE ===== */
+.table-container {
+  width: 100%;
+  overflow-x: auto; /* allows horizontal scroll on small screens */
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -175,7 +188,7 @@ tr:hover {
 .buy-btn,
 .preview-btn {
   padding: 8px 14px;
-  background: #4da3ff;
+  background: #2d8be8; /* darker for better contrast */
   color: white;
   border: none;
   border-radius: 6px;
@@ -189,13 +202,7 @@ tr:hover {
   background: #1d7be0;
 }
 
-/* ===== RESPONSIVE TABLE ===== */
-.table-container {
-  width: 100%;
-  overflow-x: auto; /* allows horizontal scroll on small screens */
-}
-
-/* Mobile stacked table */
+/* ===== RESPONSIVE TABLE STACKED MODE ===== */
 @media (max-width: 600px) {
   table, thead, tbody, th, td, tr {
     display: block;
@@ -216,7 +223,8 @@ tr:hover {
 
   td {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column; /* prevents overflow when labels are long */
+    align-items: flex-start;
     padding: 10px;
     border-bottom: none;
     text-align: left;
@@ -226,5 +234,41 @@ tr:hover {
     content: attr(data-label);
     font-weight: bold;
     color: #0d1b2a;
+    margin-bottom: 5px;
+  }
+}
+
+/* ===== DARK MODE SUPPORT ===== */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #0d1b2a;
+    color: #f1f1f1;
+  }
+
+  .main-content p,
+  .main-content li {
+    color: #ddd;
+    background: #162436;
+  }
+
+  table {
+    background: #1b263b;
+    color: #f1f1f1;
+  }
+
+  th {
+    background: #243447;
+  }
+
+  tr:hover {
+    background: #2d3a55;
+  }
+
+  .footer {
+    background: #1b263b;
+  }
+
+  .navbar {
+    background: #1b263b;
   }
 }
